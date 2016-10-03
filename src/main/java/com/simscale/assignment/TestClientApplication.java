@@ -1,7 +1,5 @@
 package com.simscale.assignment;
 
-import org.apache.http.client.methods.HttpRequestBase;
-
 import com.simscale.assignment.loadbalancer.LoadBalancer;
 import com.simscale.assignment.loadbalancer.RoundRobin;
 import com.simscale.assignment.utils.RandomRequest;
@@ -18,9 +16,7 @@ public class TestClientApplication {
 		
 		long startTime = System.nanoTime();
 		while (!fiveMinutesPast(startTime)) {
-//			loadBalancer.handleRequest(randomTestRequest.nextRequest());
-			HttpRequestBase request = randomTestRequest.nextRequest();
-			System.out.println(request.getMethod() + " - " +  request.getURI().toString());
+			loadBalancer.handleRequest(randomTestRequest.nextRequest());
 		}
 
 	}

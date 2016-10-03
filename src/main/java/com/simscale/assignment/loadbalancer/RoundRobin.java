@@ -6,10 +6,6 @@ public class RoundRobin extends LoadBalancer {
 		super(servers);
 	}
 	
-	public RoundRobin(String[] servers, int timeout){
-		super(servers, timeout);
-	}
-
 	private int nextServerPosition = 0;
 
 	@Override

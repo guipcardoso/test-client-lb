@@ -9,16 +9,11 @@ public abstract class LoadBalancer {
 
 	protected String[] servers;
 	
-	private static final int DEFAULT_TIMEOUT_3_SECONDS = 3000;
 	private RequestDispatcher dispatcher;
 
 	public LoadBalancer(String[] servers) {
-		this(servers, null);
-	}
-
-	public LoadBalancer(String[] servers, Integer timeout) {
 		this.servers = servers;
-		dispatcher = new RequestDispatcher(timeout == null ? DEFAULT_TIMEOUT_3_SECONDS : timeout.intValue());
+		dispatcher = new RequestDispatcher();
 	}
 
 	public void handleRequest(HttpRequestBase request) {
