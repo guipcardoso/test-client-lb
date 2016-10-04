@@ -25,7 +25,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @PrepareForTest(RoundRobin.class)
 public class RoundRobinTest {
 
-	private RoundRobin roundRobin ;
+	private RoundRobin roundRobin;
 	private RequestDispatcher mockedDispatcher = mock(RequestDispatcher.class);
 	
 	@Captor
@@ -37,7 +37,7 @@ public class RoundRobinTest {
 
 	@Before
 	public void setup() throws Exception {
-		PowerMockito.whenNew(RequestDispatcher.class).withArguments(3000).thenReturn(mockedDispatcher);
+		PowerMockito.whenNew(RequestDispatcher.class).withNoArguments().thenReturn(mockedDispatcher);
 		roundRobin = new RoundRobin(new String[] { 	FIRST_SERVER_HOST,
 													SECOND_SERVER_HOST,
 													THIRD_SERVER_HOST  });

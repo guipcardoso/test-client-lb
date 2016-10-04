@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.HttpClientBuilder;
 
@@ -13,13 +14,16 @@ public class RequestDispatcher {
 
 	public boolean dispatch(HttpRequestBase request) {
 		try {
-			httpClient = HttpClientBuilder.create().build();
+
+			int timeoutInMilliseconds = 2500;
+			RequestConfig config = RequestConfig.custom().setConnectTimeout(timeoutInMilliseconds )
+					.setConnectionRequestTimeout(timeoutInMilliseconds).setSocketTimeout(timeoutInMilliseconds).build();
+
+			httpClient = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
 			httpClient.execute(request);
 			return true;
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return false;
 	}
